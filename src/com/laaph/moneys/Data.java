@@ -4,6 +4,8 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -57,5 +59,18 @@ class Data {
 	}
 	buf.close();
     }
+
+    public void saveFile(String filename) throws java.io.IOException {
+
+	PrintWriter out = new PrintWriter(new FileWriter(filename));
+	
+	for(int i = 1; i < items.size(); i++) {
+	    out.println(dates.get(i) + "\t" + labels.get(i) + "\t" +
+			items.get(i) + "\t" + comments.get(i));
+	}
+	out.close();
+
+    }
+
     
 }
