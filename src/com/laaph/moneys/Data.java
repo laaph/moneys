@@ -5,8 +5,11 @@ import java.text.SimpleDateFormat;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 class Data {
+    private static final Logger LOG = Logger.getLogger(Data.class.getName());
+
     ArrayList<Date>      dates = new ArrayList<Date>();
     ArrayList<String>   labels = new ArrayList<String>();
     ArrayList<Integer>   items = new ArrayList<Integer>();
@@ -29,11 +32,13 @@ class Data {
 	String strLine;
 	BufferedReader buf = new BufferedReader(new FileReader(filename));
 
+	int lineNum = 0;
 	Date d; String l; Integer i; String c;
 	String tmp[];
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 
 	while ((strLine = buf.readLine()) != null) {
+	    lineNum++;
 	    try {
 		// parse stuffs here
 		tmp = strLine.split("\\s+");
@@ -42,6 +47,7 @@ class Data {
 		i = Integer.parseInt(tmp[2]);
 		c = tmp[3];
 	    } catch (java.text.ParseException e) {
+		LOG.warning("Unable to parse line " + lineNum);
 		continue;
 	    }
 	    dates.add(d);
