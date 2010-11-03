@@ -44,6 +44,10 @@ class Data {
 	    } catch (java.text.ParseException e) {
 		continue;
 	    }
+	    dates.add(d);
+	    labels.add(l);
+	    items.add(i);
+	    comments.add(c);
 	}
 	buf.close();
     }
