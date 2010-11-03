@@ -1,3 +1,6 @@
 
-2010-11-02 I can't believe I've only written one method and I think the code is already ugly and horrible.
+2010-11-02 
+I can't believe I've only written one method and I think the code is already ugly and horrible.
+--Fixed, managed to remove five lines of file handling overhead down to one
 
+This is pretty shiny, but we still want data output, and a main() function.
