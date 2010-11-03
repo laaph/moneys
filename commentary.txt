@@ -1,0 +1,3 @@
+
+2010-11-02 I can't believe I've only written one method and I think the code is already ugly and horrible.
+
