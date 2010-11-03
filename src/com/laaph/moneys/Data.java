@@ -43,6 +43,7 @@ class Data {
 	    lineNum++;
 	    try {
 		// parse stuffs here
+
 		tmp = strLine.split("\\s+");
 		d = sdf.parse(tmp[0]);
 		l = tmp[1];
