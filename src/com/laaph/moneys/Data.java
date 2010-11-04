@@ -1,4 +1,6 @@
 
+package com.laaph.moneys;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -64,13 +66,12 @@ class Data {
     public void saveFile(String filename) throws java.io.IOException {
 
 	PrintWriter out = new PrintWriter(new FileWriter(filename));
-	
-	for(int i = 1; i < items.size(); i++) {
+
+	for(int i = 0; i < items.size(); i++) {
 	    out.println(dates.get(i) + "\t" + labels.get(i) + "\t" +
 			items.get(i) + "\t" + comments.get(i));
 	}
 	out.close();
-
     }
 
     
