@@ -1,4 +1,7 @@
 
+Inspired by
+http://news.ycombinator.com/item?id=1856463
+
 2010-11-02 
 I can't believe I've only written one method and I think the code is already ugly and horrible.
 --Fixed, managed to remove five lines of file handling overhead down to one
