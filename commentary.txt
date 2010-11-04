@@ -3,4 +3,10 @@
 I can't believe I've only written one method and I think the code is already ugly and horrible.
 --Fixed, managed to remove five lines of file handling overhead down to one
 
+2010-11-03
 This is pretty shiny, but we still want data output, and a main() function.
+--Fixed!  Even shinier now.
+
+Now we want to do math and make pretty plots.  And calculate that shiny day
+upon which we turn broke.  :(
+
