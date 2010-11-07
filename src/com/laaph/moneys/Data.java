@@ -1,5 +1,5 @@
 
-package com.laaph.moneys;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.logging.Logger;
 
 class Data {
@@ -19,16 +18,38 @@ class Data {
     ArrayList<Integer>   items = new ArrayList<Integer>();
     ArrayList<String> comments = new ArrayList<String>();
 
+    /**
+     * Adds an entry to the table of data.  An entry consists of a monetary transaction.
+     * We compose it of the date it happened, a label (a short text description, such as
+     * "paycheck" or "car payment"), the amount (use a negative number for paying out and
+     * a positive number for income), and an (optional) comment (use null for the comment
+     * if you wish to omit it).
+     * @param d The date of transaction 
+     * @param l The label
+     * @param i The amount in the transaction
+     * @param c Any commentary you may care to add
+     */
     public void addEntry(Date d, String l, Integer i, String c) {
 	dates.add(d); labels.add(l); items.add(i); comments.add(c);
     }
 
+    /**
+     * Changes the format of the date string to allow for strange
+     * dates to be entered.
+     * @param df The format of the new date string
+     */
 
     public void setDateFormat(String df) {
 	dateFormat = df;
     }
 
     protected String dateFormat = "yyyy-MM-dd";
+    /**
+     * Loads a file from disk to memory.
+     * @param filename
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     */
 
     public void loadFile(String filename) throws 
 	java.io.IOException,
@@ -62,6 +83,11 @@ class Data {
 	}
 	buf.close();
     }
+    /**
+     * Saves data from memory to disk.
+     * @param filename
+     * @throws java.io.IOException
+     */
 
     public void saveFile(String filename) throws java.io.IOException {
 
@@ -76,7 +102,16 @@ class Data {
     
     // what we will want to return is a slope, offset, whether we are
     // getting richer or poorer, and number of days until bust/millionaire
-    public double  calculateTrend(int days) {
+    /**
+     * calculateTrends
+     * Calculates the trend to riches or poverty.  Given a number of days
+     * in the past, it will look at the trend line from that day.
+     * 
+     * @param  days  Number of days in the past to calculate trend line from
+     * @return slope The slope of the trend line that you are increasing or 
+     * 				 decreasing by.  Null indicates an error.
+     */
+    public Double  calculateTrend(int days) {
 	// Calculate days
 
 	Date today    = new Date();
@@ -85,7 +120,7 @@ class Data {
 	// sanity check
 	if(firstDay.before(dates.get(0)) || firstDay.after(today)) {
 	    // return error?;
-	    return 0; // What do I return to indicate error?
+	    return null; // What do I return to indicate error?
 	}
 
 	int moneyAtStart = 0;
