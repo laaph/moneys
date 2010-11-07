@@ -73,6 +73,43 @@ class Data {
 	}
 	out.close();
     }
+    
+    // what we will want to return is a slope, offset, whether we are
+    // getting richer or poorer, and number of days until bust/millionaire
+    public double  calculateTrend(int days) {
+	// Calculate days
 
+	Date today    = new Date();
+	Date firstDay = new Date(today.getTime() - ((24*60*60*1000) * days));
+
+	// sanity check
+	if(firstDay.before(dates.get(0)) || firstDay.after(today)) {
+	    // return error?;
+	    return 0; // What do I return to indicate error?
+	}
+
+	int moneyAtStart = 0;
+	int indexFrom    = 0;
+	int moneyAtEnd   = 0;
+	for(int i = 0; i < items.size(); i++) {
+	    if(dates.get(i).before(firstDay)) {
+		moneyAtStart = moneyAtStart + items.get(i);
+	    } else {
+		// We can either calculate it here, or making a new loop 
+		// may be easier to read
+		indexFrom = i;
+		break;
+	    }
+	}
+	moneyAtEnd = moneyAtStart; // we'll add in the rest too, relax
+	for(int i = indexFrom; i < items.size(); i++) {
+	    moneyAtEnd = moneyAtEnd + items.get(i);
+	}
+
+	double slope = (double)(moneyAtEnd - moneyAtStart)/(double)(days);
+	return slope;
+
+
+    }
     
 }
