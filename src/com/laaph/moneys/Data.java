@@ -145,4 +145,11 @@ class Data {
 	return slope;
     }
     
+    public int netTotal() {
+	int sum = 0;
+	for(int i:items) {
+	    sum = sum + i;
+	}
+	return sum;
+    }
 }
