@@ -1,5 +1,5 @@
 
-
+package com.laaph.moneys;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -103,7 +103,7 @@ class Data {
     // what we will want to return is a slope, offset, whether we are
     // getting richer or poorer, and number of days until bust/millionaire
     /**
-     * calculateTrends
+     * calculateSlope
      * Calculates the trend to riches or poverty.  Given a number of days
      * in the past, it will look at the trend line from that day.
      * 
@@ -111,7 +111,7 @@ class Data {
      * @return slope The slope of the trend line that you are increasing or 
      * 				 decreasing by.  Null indicates an error.
      */
-    public Double  calculateTrend(int days) {
+    public Double  calculateSlope(int days) {
 	// Calculate days
 
 	Date today    = new Date();
@@ -143,8 +143,6 @@ class Data {
 
 	double slope = (double)(moneyAtEnd - moneyAtStart)/(double)(days);
 	return slope;
-
-
     }
     
 }
