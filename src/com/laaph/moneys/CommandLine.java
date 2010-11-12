@@ -14,7 +14,7 @@ class CommandLine {
 	while(true) {
 	    System.out.print("moneys> ");
 	    String input = myCommandLine.getInput();
-	    System.out.print("debug - input = " + input + "\n");
+	    // System.out.print("debug - input = " + input + "\n");
 	    if(input == null) {
 		continue;
 	    }
@@ -64,6 +64,32 @@ class CommandLine {
 	    }
 	    return false;
 	}
+	if(pieces[0].equals("rate")) {
+	    int days;
+	    if(pieces.length > 1) {
+		days = Integer.parseInt(pieces[1]);
+	    } else {
+		days = 30; // defaults could be written more cocise
+	    }
+	    Double slope = myData.calculateSlope(days);
+	    if(slope.isNaN()) {
+		println("Error in calculations");
+		return false;
+	    }
+
+	    if(slope < 0) {
+		double moneyGone = myData.netTotal()/(-slope);
+		println("Spending money on average at $" + slope + " per day");
+		println("Will run out of money in " + moneyGone + " days");
+	    } 
+	    if(slope > 0) {
+		double millionaire = (1000000 - myData.netTotal())/slope;
+		println("Earning money on average at $" + slope + " per day");
+		println("Will become a millionaire in " + millionaire + " days");
+	    }
+	    return true;
+	}
+	    
 	if(pieces[0].equals("quit")) {
 	    return true;
 	}
